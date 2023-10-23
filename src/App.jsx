@@ -10,8 +10,10 @@ import { StyledDiv } from './components/capa/styles';
 import { GlobalStyles } from './styles/GlobalStyles';
 import DivSup from './components/capa/DivSuperior';
 
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import Checkbox from './components/input/Checkbox';
+import { v4 } from 'uuid';
+import { StyledInput, StyledLabel } from './components/toggle-button/styles';
 
 const App = () => {
 	// La variable se tiene que lamar como esta funcion: checked y setChecked
@@ -61,18 +63,53 @@ const App = () => {
     ) */
 
 	// Renderizado mulitiple
+	// return (
+	// 	<>
+	// 		<h1>Lista</h1>
+
+	// 		{users.map(user => (
+	// 			<>
+	// 				<h2>{user.name}</h2>
+	// 				<p>{user.age}</p>
+	// 			</>
+	// 		))}
+	// 	</>
+	// );
+
+	// Bucle con id unicos
+	// v4 es un identificador unico del paquete UUID importado. NO se visualiza pero sae utiliza internamente en react para generar claves unicas.
+	// Hola Lucia y Alexandra... esto es para vosotras.
+	// console.log(v4());
+	// return (
+	// 	<>
+	// 		<h1>Lista</h1>
+
+	// 		{users.map(user => (
+	// 			<Fragment key={v4()}>
+	// 				<h2> {user.name}</h2>
+	// 				<p> {user.age} </p>
+	// 			</Fragment>
+	// 		))}
+	// 	</>
+	// );
+
+	// Styled Toggle button con styled label
+
 	return (
 		<>
-			<h1>Lista</h1>
+			<StyledInput
+				id='toggle'
+				type='checkbox'
+				onChange={event => handleChange(event, setChecked)}
+			></StyledInput>
 
-			{users.map(user => (
-				<>
-					<h2>{user.name}</h2>
-					<p>{user.age}</p>
-				</>
-			))}
+			<StyledLabel htmlFor='toggle'></StyledLabel>
 		</>
 	);
+};
+
+const handleChange = (event, setChecked) => {
+	console.log(event.target.checked);
 };
 
 export default App;
